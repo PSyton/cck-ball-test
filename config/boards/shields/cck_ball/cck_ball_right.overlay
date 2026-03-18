@@ -60,9 +60,10 @@
         motion-gpios = <&gpio0 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         zephyr,axis-x = <INPUT_REL_X>;
         zephyr,axis-y = <INPUT_REL_Y>;
-        // 600 CPI = old CPI 1200 / divider 2. Orientation and per-layer
-        // behaviors are handled by trackball_listener below.
-        res-cpi = <600>;
+        // 400 CPI — reduced from 600 to tame slight over-sensitivity.
+        // Raise to 600 or 800 if cursor feels sluggish.
+        // Orientation and per-layer behaviors handled by trackball_listener below.
+        res-cpi = <400>;
     };
 };
 
@@ -115,26 +116,23 @@
         compatible = "zmk,input-listener";
         device = <&trackball>;
 
-        // Physical orientation fix: ORIENTATION_270 + INVERT_X nets to a pure XY
-        // swap. If the cursor still moves in the wrong direction after flashing,
-        // try INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT (= 3) or
-        // INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT (= 5).
-        input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>;
+        // No orientation transform needed — the native Zephyr PMW3610 driver
+        // already outputs correct X/Y axes for this physical mounting.
+        // If cursor directions are wrong, uncomment one of the zip_xy_transform
+        // lines in the scroll/snipe children below as a starting point.
 
         // Layer 3 (scroll): convert XY motion to scroll-wheel axes.
         // Adjust zip_scroll_scaler divisor to taste (higher = slower scroll).
         scroll {
             layers = <3>;
-            input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
-                               <&zip_xy_to_scroll_mapper>,
+            input-processors = <&zip_xy_to_scroll_mapper>,
                                <&zip_scroll_scaler 1 8>;
         };
 
         // Layer 4 (snipe): scale to ~1/3 speed — matches old SNIPE_CPI 200 vs 600.
         snipe {
             layers = <4>;
-            input-processors = <&zip_xy_transform INPUT_TRANSFORM_XY_SWAP>,
-                               <&zip_xy_scaler 1 3>;
+            input-processors = <&zip_xy_scaler 1 3>;
         };
     };
 };

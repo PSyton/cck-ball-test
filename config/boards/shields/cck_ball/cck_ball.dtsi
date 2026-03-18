@@ -45,10 +45,12 @@
 		label = "LEFT_ENCODER";
 		a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		// Standard Alps EC11: 20 detents × 4 quadrature edges = 80 steps.
-		// The previous value of 12 caused the driver to miscount edges,
-		// producing skipped or doubled ticks (erratic behaviour).
-		steps = <80>;
+		// steps = total quadrature edges per full rotation.
+		// 40 = 20 detents × 2 edges (half-quadrature, typical cheap EC11 clone).
+		// With triggers-per-rotation = 20, this gives 1 trigger per detent click.
+		// If the encoder fires twice per click, try steps = 80 (full-quadrature).
+		// If it still feels slow, try steps = 20 (but check for driver overflow).
+		steps = <40>;
 	};
 
 	right_encoder: encoder_right {
@@ -57,7 +59,7 @@
 		label = "RIGHT_ENCODER";
 		a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 		b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		steps = <80>;
+		steps = <40>;
 	};
 
 	sensors {

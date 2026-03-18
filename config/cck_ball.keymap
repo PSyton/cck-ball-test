@@ -8,7 +8,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/pointing.h>
 
-&mmv_input_listener { input-processors = <&zip_xy_scaler 2 1>; };
+&mmv_input_listener { input-processors = <&zip_xy_scaler 1 1>; };
 
 &msc_input_listener { input-processors = <&zip_scroll_scaler 2 1>; };
 
@@ -26,8 +26,17 @@
 
 &soft_off { hold-time-ms = <2000>; };
 
+// Layer-tap: require a deliberate hold before activating the layer.
+// Increased tapping-term-ms prevents accidental layer triggers during fast typing.
+// tap-preferred means the tap action is always chosen unless held past tapping-term-ms.
+&lt {
+    tapping-term-ms = <280>;
+    flavor = "tap-preferred";
+    quick-tap-ms = <180>;
+};
+
 / {
-    // 上下滚动编码器行为
+    // Vertical scroll encoder behavior
     scroll_vertical_encoder: scroll_vertical_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
@@ -35,7 +44,7 @@
         tap-ms = <100>;
     };
 
-    // 左右滚动编码器行为
+    // Horizontal scroll encoder behavior
     scroll_horizontal_encoder: scroll_horizontal_encoder {
         compatible = "zmk,behavior-sensor-rotate";
         #sensor-binding-cells = <0>;
@@ -106,8 +115,8 @@
 &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
             >;
 
-            sensor-bindings = <&scroll_vertical_encoder>,   // 编码器1：上下滚动
-                             <&scroll_horizontal_encoder>;  // 编码器2：左右滚动
+            sensor-bindings = <&scroll_vertical_encoder>,   // Encoder 1: vertical scroll
+                             <&scroll_horizontal_encoder>;  // Encoder 2: horizontal scroll
         };
     };
 };

@@ -26,13 +26,11 @@
 
 &soft_off { hold-time-ms = <2000>; };
 
-// Layer-tap: require a deliberate hold before activating the layer.
-// Increased tapping-term-ms prevents accidental layer triggers during fast typing.
-// tap-preferred means the tap action is always chosen unless held past tapping-term-ms.
-&lt {
-    tapping-term-ms = <280>;
-    flavor = "tap-preferred";
-    quick-tap-ms = <180>;
+// mt = mod-tap behavior | lt = layer-tap behavior
+&mt {
+    tapping-term-ms = <250>;   // Increased from default 200ms — hold window before modifier activates
+    flavor = "tap-preferred";  // Prefer tap unless held past tapping-term-ms
+    quick-tap-ms = <180>;      // If pressed again within 180ms, treat as tap (prevents modifier on fast re-press)
 };
 
 / {

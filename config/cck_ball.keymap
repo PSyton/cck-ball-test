@@ -28,9 +28,9 @@
 
 // mt = mod-tap behavior | lt = layer-tap behavior
 &mt {
-    tapping-term-ms = <250>;   // Increased from default 200ms — hold window before modifier activates
-    flavor = "tap-preferred";  // Prefer tap unless held past tapping-term-ms
-    quick-tap-ms = <180>;      // If pressed again within 180ms, treat as tap (prevents modifier on fast re-press)
+    tapping-term-ms = <220>;    // Increased from default 200ms — hold window before modifier activates
+    flavor = "balanced";        // If another key is pressed and released on mod-alt, Prefer mod
+    quick-tap-ms = <180>;       // If pressed again within 180ms, treat as tap (prevents modifier on fast re-press)
 };
 
 / {

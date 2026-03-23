@@ -22,8 +22,6 @@
         >;
     };
 
-    
-	
     kscan0: kscan {
         compatible = "zmk,kscan-gpio-matrix";
         label = "KSCAN";
@@ -36,40 +34,33 @@
 	        , <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 	        , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
-
-    
-	 /* encoders */
-	left_encoder: encoder_left {
-		compatible = "alps,ec11";
-        status = "disabled";
-		label = "LEFT_ENCODER";
-		a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		// steps = total quadrature edges per full rotation.
-		// 40 = 20 detents × 2 edges (half-quadrature, typical cheap EC11 clone).
-		// With triggers-per-rotation = 20, this gives 1 trigger per detent click.
-		// If the encoder fires twice per click, try steps = 80 (full-quadrature).
-		// If it still feels slow, try steps = 20 (but check for driver overflow).
-		steps = <40>;
-	};
-
-	right_encoder: encoder_right {
-		compatible = "alps,ec11";
-        status = "disabled";
-		label = "RIGHT_ENCODER";
-		a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-		steps = <40>;
-	};
-
-	sensors {
-		compatible = "zmk,keymap-sensors";
-		sensors = <&left_encoder &right_encoder>;
-		// 20 events per full rotation (matches the 20 physical detents).
-		triggers-per-rotation = <20>;
-	};
-
     };
 
-};
+    /* encoders — must be at root level, NOT inside kscan0 */
+    left_encoder: encoder_left {
+        compatible = "alps,ec11";
+        status = "disabled";
+        label = "LEFT_ENCODER";
+        a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        // Baseline value empirically tuned for the encoder hardware in this keyboard.
+        // Do not raise to 40/80 — those values cause missed/erratic triggers here.
+        steps = <12>;
+    };
 
+    right_encoder: encoder_right {
+        compatible = "alps,ec11";
+        status = "disabled";
+        label = "RIGHT_ENCODER";
+        a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+        steps = <12>;
+    };
+
+    sensors {
+        compatible = "zmk,keymap-sensors";
+        sensors = <&left_encoder &right_encoder>;
+        // 10 triggers per rotation — baseline value matching this encoder's output.
+        triggers-per-rotation = <10>;
+    };
+};

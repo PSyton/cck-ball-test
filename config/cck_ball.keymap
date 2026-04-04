@@ -103,11 +103,11 @@
 
         Sym-en {
             bindings = <
-&trans     &trans           &trans         &trans            &trans             &trans         &trans       &trans                &trans                 &trans  &trans  &trans
-&kp GRAVE  &kp TILDE        &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &trans       &kp LEFT_BRACE        &kp RIGHT_BRACE        &trans  &trans  &trans
-&trans     &kp EXCLAMATION  &kp ASTERISK   &kp SLASH         &kp EQUAL          &kp AMPERSAND  &kp HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &trans  &trans  &trans
-&trans     &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans         &kp AT_SIGN  &trans                &trans                 &trans  &trans  &trans
-&trans     &trans           &trans         &trans            &trans             &trans         &trans       &trans                &trans                 &trans  &trans  &trans
+&trans     &trans           &trans         &trans            &trans             &trans         &trans       &trans                &trans                 &trans         &trans             &trans
+&kp GRAVE  &kp TILDE        &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &trans       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp COLON      &kp SINGLE_QUOTE   &trans
+&trans     &kp EXCLAMATION  &kp ASTERISK   &kp SLASH         &kp EQUAL          &kp AMPERSAND  &kp HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp DOUBLE_QUOTES  &trans
+&trans     &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans         &kp AT_SIGN  &trans                &kp COMMA              &kp PERIOD     &kp SLASH          &trans
+&trans     &trans           &trans         &trans            &trans             &trans         &trans       &trans                &trans                 &trans         &trans             &trans
             >;
         };
 
@@ -133,54 +133,26 @@
 
         F_layers {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans     &trans     &trans  &trans  &trans  &trans
-&kp A   &none   &none   &none   &none   &trans  &none      &none      &none   &trans  &trans  &trans
-&trans  &none   &none   &none   &none   &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &none   &none      &none      &trans  &trans  &none   &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &mkp LCLK  &mkp RCLK  &trans  &trans  &trans  &trans
+&trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
+&none   &kp F10  &kp F9  &kp F8  &kp F7  &trans  &none   &none     &kp UP    &trans     &trans  &trans
+&trans  &kp F11  &kp F3  &kp F2  &kp F1  &trans  &none   &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
+&trans  &kp F12  &kp F6  &kp F5  &kp F4  &none   &none   &none     &trans    &trans     &none   &trans
+&trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };
 
-        BT_layers {
+        Numbers {
             bindings = <
-&trans  &bt BT_SEL 0    &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &trans      &trans  &trans  &trans  &trans  &kp W
-&trans  &trans          &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans
-&trans  &bt BT_CLR_ALL  &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans
-&trans  &trans          &trans        &bt BT_CLR    &trans        &trans        &bt BT_NXT  &trans  &trans  &trans  &trans  &trans
-&trans  &trans          &trans        &trans        &trans        &trans        &trans      &trans  &trans  &trans  &trans  &trans
+&trans  &none   &none   &none   &none   &none   &bt BT_SEL 0  &trans  &trans  &trans  &trans  &bt BT_CLR_ALL
+&trans  &trans  &kp N9  &kp N8  &kp N7  &trans  &trans        &trans  &trans  &trans  &trans  &bt BT_CLR
+&trans  &none   &kp N3  &kp N2  &kp N1  &trans  &trans        &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N6  &kp N5  &kp N4  &trans  &bt BT_NXT    &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp N0  &trans  &trans  &trans  &trans        &trans  &trans  &trans  &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        scroll-layers {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
-        };
-
-        simple-layer {
-            bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-            >;
-
-            sensor-bindings =
-                <&scroll_vertical_encoder>,
-                // Encoder 1: vertical scroll,
-                <&scroll_horizontal_encoder>;
-  // Encoder 2: horizontal scroll
         };
     };
 };

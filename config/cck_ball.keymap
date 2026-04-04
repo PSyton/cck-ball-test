@@ -82,16 +82,83 @@
     behaviors {
     };
 
+    macros {
+        dash_long: dash_long {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT_ALT &kp MINUS &kp MINUS &kp MINUS>;
+            label = "DASH_LONG";
+        };
+
+        open_rquote_en: open_rquote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RALT &kp LESS_THAN &kp LESS_THAN>;
+            label = "OPEN_RQUOTE";
+        };
+
+        close_rquote_en: close_rquote {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RALT &kp GREATER_THAN &kp GREATER_THAN>;
+            label = "CLOSE_RQUOTE";
+        };
+
+        layer_en: layer_un {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 0 &to_en>;
+            label = "LAYER_UN";
+        };
+
+        layer_ru: layer_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to 2 &kp LS(LC(NUMBER_2))>;
+            label = "LAYER_RU";
+        };
+
+        in_en: in_en {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings =
+                <&to_en>,
+                <&macro_press>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&macro_param_1to1 &kp MACRO_PLACEHOLDER>,
+                <&macro_tap>,
+                <&to_ru>;
+
+            label = "IN_EN";
+        };
+
+        to_en: to_en {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LC(NUMBER_1))>;
+            label = "TO_EN";
+        };
+
+        to_ru: to_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp LS(LC(NUMBER_1))>;
+            label = "TO_RU";
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
         En {
             bindings = <
-&kp ESC       &kp N1   &kp N2         &kp N3          &kp N4               &kp N5      &kp N6     &kp N7          &kp N8          &kp N9         &kp N0   &kp BACKSPACE
-&kp TAB       &kp Q    &kp W          &kp F           &kp P                &kp B       &kp J      &kp L           &kp U           &kp Y          &none    &none
-&kp CAPSLOCK  &lt 1 A  &hrm_l LALT R  &hrm_l LCTRL S  &hrm_l LEFT_SHIFT T  &kp G       &kp M      &hrm_r LSHFT N  &hrm_r RCTRL E  &hrm_r LALT I  &lt 1 O  &none
-&none         &kp X    &kp C          &kp D           &kp V                &kp Z       &kp K      &kp H           &none           &none          &none    &none
-&none         &none    &none          &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &mkp LCLK  &mkp RCLK       &lt 4 ENTER     &none          &none    &none
+&kp ESC         &kp N1   &kp N2         &kp N3          &kp N4               &kp N5      &kp N6     &kp N7          &kp N8          &kp N9         &kp N0   &kp BACKSPACE
+&kp TAB         &kp Q    &kp W          &kp F           &kp P                &kp B       &kp J      &kp L           &kp U           &kp Y          &none    &none
+&kp UNDERSCORE  &lt 1 A  &hrm_l LALT R  &hrm_l LCTRL S  &hrm_l LEFT_SHIFT T  &kp G       &kp M      &hrm_r LSHFT N  &hrm_r RCTRL E  &hrm_r LALT I  &lt 1 O  &none
+&layer_en       &kp X    &kp C          &kp D           &kp V                &kp Z       &kp K      &kp H           &none           &none          &none    &layer_ru
+&none           &none    &none          &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &mkp LCLK  &mkp RCLK       &lt 4 ENTER     &none          &none    &none
             >;
 
             sensor-bindings =
@@ -104,37 +171,37 @@
         Sym-en {
             bindings = <
 &trans     &trans           &trans         &trans            &trans             &trans         &trans       &trans                &trans                 &trans         &trans             &trans
-&kp GRAVE  &kp TILDE        &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &trans       &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp COLON      &kp SINGLE_QUOTE   &trans
+&kp GRAVE  &kp TILDE        &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &kp CARET    &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOLLAR     &kp SINGLE_QUOTE   &trans
 &trans     &kp EXCLAMATION  &kp ASTERISK   &kp SLASH         &kp EQUAL          &kp AMPERSAND  &kp HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp DOUBLE_QUOTES  &trans
-&trans     &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &trans         &kp AT_SIGN  &trans                &kp COMMA              &kp PERIOD     &kp SLASH          &trans
-&trans     &trans           &trans         &trans            &trans             &trans         &trans       &trans                &trans                 &trans         &trans             &trans
+&layer_en  &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT    &kp AT_SIGN  &kp COLON             &kp COMMA              &kp PERIOD     &kp SLASH          &layer_ru
+&trans     &trans           &trans         &dash_long        &trans             &trans         &trans       &trans                &trans                 &trans         &open_rquote_en    &close_rquote_en
             >;
         };
 
         Ru {
             bindings = <
-&trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans     &trans   &trans             &trans
-&kp GRAVE  &kp Q   &kp W   &kp E   &kp R   &kp T   &kp Y   &kp U   &kp I      &kp O    &kp P              &kp LBKT
-&trans     &kp A   &kp S   &kp D   &kp F   &kp G   &kp H   &kp J   &kp K      &kp L    &kp SEMI           &kp APOS
-&trans     &kp Z   &kp X   &kp C   &kp V   &kp B   &kp N   &kp M   &kp COMMA  &kp DOT  &kp RIGHT_BRACKET  &trans
-&trans     &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans     &trans   &trans             &trans
+&trans     &trans   &trans             &trans          &trans               &trans      &trans  &trans           &trans          &trans             &trans             &trans
+&kp GRAVE  &kp Q    &kp W              &kp E           &kp R                &kp T       &kp Y   &kp U            &kp I           &kp O              &kp P              &kp LBKT
+&trans     &lt 3 A  &hrm_l LEFT_ALT S  &hrm_l LCTRL D  &hrm_l LEFT_SHIFT F  &kp G       &kp H   &hrm_r LSHIFT J  &hrm_r LCTRL K  &hrm_r LEFT_ALT L  &lt 3 SEMICOLON    &kp APOS
+&layer_en  &kp Z    &kp X              &kp C           &kp V                &kp B       &kp N   &kp M            &kp COMMA       &kp DOT            &kp RIGHT_BRACKET  &layer_ru
+&trans     &trans   &trans             &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &trans  &trans           &trans          &trans             &trans             &trans
             >;
         };
 
         Sym-ru {
             bindings = <
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans        &trans           &trans            &trans               &trans                &trans            &trans          &trans                &trans                 &trans            &trans               &trans
+&in_en GRAVE  &in_en TILDE2    &in_en LESS_THAN  &in_en GREATER_THAN  &kp MINUS             &in_en PIPE       &in_en CARET    &in_en LEFT_BRACE     &in_en RIGHT_BRACE     &in_en DOLLAR     &in_en SINGLE_QUOTE  &trans
+&trans        &kp EXCLAMATION  &kp ASTERISK      &in_en SLASH         &kp EQUAL             &in_en AMPERSAND  &in_en HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &in_en SEMICOLON  &kp LS(NUMBER_2)     &trans
+&layer_en     &kp LS(N7)       &kp PLUS          &in_en LEFT_BRACKET  &in_en RIGHT_BRACKET  &kp PERCENT       &in_en AT_SIGN  &kp LS(NUMBER_6)      &kp LS(NUMBER_4)       &in_en COMMA      &in_en DOT           &layer_ru
+&trans        &trans           &trans            &trans               &trans                &trans            &trans          &trans                &trans                 &trans            &trans               &trans
             >;
         };
 
         F_layers {
             bindings = <
 &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
-&none   &kp F10  &kp F9  &kp F8  &kp F7  &trans  &none   &none     &kp UP    &trans     &trans  &trans
+&none   &kp F10  &kp F9  &kp F8  &kp F7  &trans  &none   &kp HOME  &kp UP    &kp END    &trans  &trans
 &trans  &kp F11  &kp F3  &kp F2  &kp F1  &trans  &none   &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
 &trans  &kp F12  &kp F6  &kp F5  &kp F4  &none   &none   &none     &trans    &trans     &none   &trans
 &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans

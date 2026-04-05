@@ -133,7 +133,7 @@ MOD_LABELS = {
     "LSHFT":"Shift","RSHFT":"Shift",
     "LCTRL":"Ctrl","RCTRL":"Ctrl","LEFT_CONTROL":"Ctrl","RIGHT_CONTROL":"Ctrl",
     "LALT":"Alt","RALT":"AltGr","LEFT_ALT":"Alt","RIGHT_ALT":"AltGr",
-    "LGUI":"Win","RGUI":"Win",
+    "LGUI":"GUI","RGUI":"GUI","LEFT_GUI":"GUI","RIGHT_GUI":"GUI",
 }
 
 # Layer index → display name (used in lt / mo hold labels)
@@ -392,6 +392,14 @@ def parse_binding(token: str, layer_idx: int = -1) -> dict:
     if behavior in ("hmc_l", "hmc_r"):
         code = args[0] if args else "?"
         return key_result(ru(code), hold="Ctrl", ktype="hrm")
+
+    # --- hmg_l / hmg_r: hold=GUI, tap=nothing ---
+    if behavior == "hmg_l":
+        mod = MOD_LABELS.get(args[0], args[0]) if args else "GUI"
+        return key_result("", hold=mod, ktype="hrm")
+    if behavior == "hmg_r":
+        mod = MOD_LABELS.get(args[0], args[0]) if args else "GUI"
+        return key_result("", hold=mod, ktype="hrm")
 
     # --- in_en: plain symbol, OS-switch mechanism hidden ---
     if behavior == "in_en":

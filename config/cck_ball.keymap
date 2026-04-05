@@ -95,6 +95,38 @@
         hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 48 49 50>;
     };
 
+    // Hold: LGUI. Tap: none.
+    // Left-hand key — triggers on right-hand key activity.
+    hmg_l: hmg_l {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HMG_L";
+        bindings = <&kp>, <&trans>;
+
+        #binding-cells = <1>;
+        tapping-term-ms = <250>;
+        flavor = "balanced";
+        quick-tap-ms = <150>;
+        require-prior-idle-ms = <175>;
+        hold-trigger-on-release;
+        hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 42 43 44 45 46 47 57 58 59>;
+    };
+
+    // Hold: RGUI. Tap: none.
+    // Right-hand key — triggers on left-hand key activity.
+    hmg_r: hmg_r {
+        compatible = "zmk,behavior-hold-tap";
+        label = "HMG_R";
+        bindings = <&kp>, <&trans>;
+
+        #binding-cells = <1>;
+        tapping-term-ms = <250>;
+        flavor = "balanced";
+        quick-tap-ms = <150>;
+        require-prior-idle-ms = <175>;
+        hold-trigger-on-release;
+        hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 48 49 50>;
+    };
+
     // Hold: activate En layer + LCTRL (ctrl_en macro). Tap: kp.
     // Left-hand key — triggers on right-hand key activity.
     hmc_l: hmc_l {
@@ -262,7 +294,7 @@
             bindings = <
 &kp ESC         &none    &none          &none           &none                &none       &none      &none           &none           &none          &none    &kp BACKSPACE
 &kp TAB         &kp Q    &kp W          &kp F           &kp P                &kp B       &kp J      &kp L           &kp U           &kp Y          &none    &none
-&none           &lt 1 A  &hrm_l LALT R  &hrm_l LCTRL S  &hrm_l LEFT_SHIFT T  &kp G       &kp M      &hrm_r LSHFT N  &hrm_r RCTRL E  &hrm_r LALT I  &lt 1 O  &none
+&hmg_l LGUI  &lt 1 A  &hrm_l LALT R  &hrm_l LCTRL S  &hrm_l LEFT_SHIFT T  &kp G       &kp M      &hrm_r LSHFT N  &hrm_r RCTRL E  &hrm_r LALT I  &lt 1 O  &hmg_r RGUI
 &layer_en       &kp X    &kp C          &kp D           &kp V                &kp Z       &kp K      &kp H           &none           &none          &none    &layer_ru
 &none           &none    &none          &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &mkp LCLK  &mkp RCLK       &lt 4 ENTER     &none          &none    &none
             >;
@@ -288,7 +320,7 @@
             bindings = <
 &kp ESC    &none    &none              &none           &none                &none       &none   &none            &none           &none              &none              &kp BACKSPACE
 &kp TAB    &kp Q    &kp W              &kp E           &kp R                &kp T       &kp Y   &kp U            &kp I           &kp O              &kp P              &kp LBKT
-&kp GRAVE  &lt 3 A  &hrm_l LEFT_ALT S  &hmc_l D  &hrm_l LEFT_SHIFT F  &kp G       &kp H   &hrm_r LSHIFT J  &hmc_r K  &hrm_r LEFT_ALT L  &lt 3 SEMICOLON    &kp APOS
+&hrm_l LGUI GRAVE  &lt 3 A  &hrm_l LEFT_ALT S  &hmc_l D  &hrm_l LEFT_SHIFT F  &kp G       &kp H   &hrm_r LSHIFT J  &hmc_r K  &hrm_r LEFT_ALT L  &lt 3 SEMICOLON    &hrm_r RGUI APOS
 &layer_en  &kp Z    &kp X              &kp C           &kp V                &kp B       &kp N   &kp M            &kp COMMA       &kp DOT            &kp RIGHT_BRACKET  &layer_ru
 &none      &none    &none              &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &mkp LCLK  &mkp RCLK           &lt 4 ENTER     &none              &none              &none
             >;

@@ -212,11 +212,11 @@
 
         Numbers {
             bindings = <
-&trans  &none   &none   &none   &none   &none   &bt BT_SEL 0  &trans  &trans  &trans  &trans  &bt BT_CLR_ALL
-&trans  &trans  &kp N9  &kp N8  &kp N7  &trans  &trans        &trans  &trans  &trans  &trans  &bt BT_CLR
-&trans  &none   &kp N3  &kp N2  &kp N1  &trans  &trans        &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &kp N6  &kp N5  &kp N4  &trans  &bt BT_NXT    &trans  &trans  &trans  &trans  &trans
-&trans  &trans  &kp N0  &trans  &trans  &trans  &trans        &trans  &trans  &trans  &trans  &trans
+&trans      &none         &none   &none   &none   &none         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR_ALL
+&trans      &kp SLASH     &kp N9  &kp N8  &kp N7  &kp ASTERISK  &trans        &trans        &trans        &trans        &trans        &bt BT_CLR
+&trans      &kp PLUS      &kp N3  &kp N2  &kp N1  &kp MINUS     &trans        &trans        &trans        &trans        &trans        &trans
+&trans      &kp X         &kp N6  &kp N5  &kp N4  &kp PERCENT   &bt BT_NXT    &trans        &trans        &trans        &trans        &trans
+&kp KP_DOT  &kp KP_COMMA  &kp N0  &trans  &trans  &trans        &trans        &trans        &trans        &trans        &trans        &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;

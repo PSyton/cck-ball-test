@@ -1,0 +1,67 @@
+# ============================================================
+# West workspace — fetched dependencies (not user config)
+# ============================================================
+# These directories are populated by `west update` and must
+# NOT be committed; they are tracked by config/west.yml.
+/zmk/
+/zephyr/
+/modules/
+/optional/
+/bootloader/
+/tools/
+
+# West internal state
+/.west/
+
+# ============================================================
+# Build artefacts
+# ============================================================
+/build/
+
+# Pre-built firmware binaries (committed only when releasing
+# a ready-to-flash build; remove these lines if you want to
+# keep .uf2 files out of the repo permanently)
+*.uf2
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+
+# Ninja
+.ninja_deps
+.ninja_log
+build.ninja
+
+# Kconfig generated files
+*.config
+zephyr_modules.txt
+zephyr_settings.txt
+
+# ============================================================
+# OS / editor artefacts
+# ============================================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+.vscode/settings.json
+.vscode/*.code-workspace
+.idea/
+
+# ============================================================
+# Python (west tooling)
+# ============================================================
+__pycache__/
+*.pyc
+*.pyo
+.python-version
+.venv/
+venv/
+
+# ============================================================
+# Node.js (ZMK prettier / doc tooling, if run locally)
+# ============================================================
+node_modules/

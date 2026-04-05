@@ -95,14 +95,14 @@
         hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41 48 49 50>;
     };
 
-    // Hold: LGUI. Tap: none.
+    // Hold: LGUI. Tap: LGUI (tap unlikely due to require-prior-idle-ms).
     // Left-hand key — triggers on right-hand key activity.
     hmg_l: hmg_l {
         compatible = "zmk,behavior-hold-tap";
         label = "HMG_L";
-        bindings = <&kp>, <&trans>;
+        bindings = <&kp>, <&kp>;
 
-        #binding-cells = <1>;
+        #binding-cells = <2>;
         tapping-term-ms = <250>;
         flavor = "balanced";
         quick-tap-ms = <150>;
@@ -111,14 +111,14 @@
         hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 42 43 44 45 46 47 57 58 59>;
     };
 
-    // Hold: RGUI. Tap: none.
+    // Hold: RGUI. Tap: RGUI (tap unlikely due to require-prior-idle-ms).
     // Right-hand key — triggers on left-hand key activity.
     hmg_r: hmg_r {
         compatible = "zmk,behavior-hold-tap";
         label = "HMG_R";
-        bindings = <&kp>, <&trans>;
+        bindings = <&kp>, <&kp>;
 
-        #binding-cells = <1>;
+        #binding-cells = <2>;
         tapping-term-ms = <250>;
         flavor = "balanced";
         quick-tap-ms = <150>;
@@ -134,7 +134,7 @@
         label = "HMC_L";
         bindings = <&ctrl_en>, <&kp>;
 
-        #binding-cells = <1>;
+        #binding-cells = <2>;
         tapping-term-ms = <250>;
         flavor = "balanced";
         quick-tap-ms = <150>;
@@ -150,7 +150,7 @@
         label = "HMC_R";
         bindings = <&ctrl_en>, <&kp>;
 
-        #binding-cells = <1>;
+        #binding-cells = <2>;
         tapping-term-ms = <250>;
         flavor = "balanced";
         quick-tap-ms = <150>;
@@ -164,12 +164,12 @@
 
     macros {
         // Activate En layer (0) + hold LCTRL while key is held; release both on key up.
-        // Zero-param so it can be used as the hold-behavior in a hold-tap node.
+        // One-param so it can be used as the hold-behavior in a hold-tap node (parameter ignored).
         ctrl_en: ctrl_en {
-            compatible = "zmk,behavior-macro";
+            compatible = "zmk,behavior-macro-one-param";
             wait-ms = <0>;
             tap-ms = <0>;
-            #binding-cells = <0>;
+            #binding-cells = <1>;
             bindings
                 = <&macro_press &mo 0 &kp LCTRL>
                 , <&macro_pause_for_release>
@@ -216,6 +216,20 @@
             label = "DASH_SHORT";
         };
 
+        dash_long_ru: dash_long_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to_en &kp RIGHT_ALT &kp MINUS &kp MINUS &kp MINUS &to_ru>;
+            label = "DASH_LONG_RU";
+        };
+
+        dash_short_ru: dash_short_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to_en &kp RIGHT_ALT &kp MINUS &kp MINUS &kp PERIOD &to_ru>;
+            label = "DASH_SHORT_RU";
+        };
+
         open_rquote_en: open_rquote {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -228,6 +242,20 @@
             #binding-cells = <0>;
             bindings = <&kp RALT &kp GREATER_THAN &kp GREATER_THAN>;
             label = "CLOSE_RQUOTE";
+        };
+
+        open_rquote_ru: open_rquote_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to_en &kp RALT &kp LESS_THAN &kp LESS_THAN &to_ru>;
+            label = "OPEN_RQUOTE_RU";
+        };
+
+        close_rquote_ru: close_rquote_ru {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&to_en &kp RALT &kp GREATER_THAN &kp GREATER_THAN &to_ru>;
+            label = "CLOSE_RQUOTE_RU";
         };
 
         layer_en: layer_un {
@@ -270,7 +298,7 @@
         to_ru: to_ru {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&kp LS(LC(NUMBER_1))>;
+            bindings = <&kp LS(LC(NUMBER_2))>;
             label = "TO_RU";
         };
     };
@@ -283,7 +311,7 @@
             timeout-ms = <50>;
             key-positions = <42 43>;
             bindings = <&mo 5>;
-            layers = <0 1 2 3 4>;
+            layers = <0 2 4>;
         };
     };
 
@@ -294,7 +322,7 @@
             bindings = <
 &kp ESC         &none    &none          &none           &none                &none       &none      &none           &none           &none          &none    &kp BACKSPACE
 &kp TAB         &kp Q    &kp W          &kp F           &kp P                &kp B       &kp J      &kp L           &kp U           &kp Y          &none    &none
-&hmg_l LGUI  &lt 1 A  &hrm_l LALT R  &hrm_l LCTRL S  &hrm_l LEFT_SHIFT T  &kp G       &kp M      &hrm_r LSHFT N  &hrm_r RCTRL E  &hrm_r LALT I  &lt 1 O  &hmg_r RGUI
+&hmg_l LGUI LGUI  &lt 1 A  &hrm_l LALT R  &hrm_l LCTRL S  &hrm_l LEFT_SHIFT T  &kp G       &kp M      &hrm_r LSHFT N  &hrm_r RCTRL E  &hrm_r LALT I  &lt 1 O  &hmg_r RGUI RGUI
 &layer_en       &kp X    &kp C          &kp D           &kp V                &kp Z       &kp K      &kp H           &none           &none          &none    &layer_ru
 &none           &none    &none          &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &mkp LCLK  &mkp RCLK       &lt 4 ENTER     &none          &none    &none
             >;
@@ -309,10 +337,10 @@
         Sym-en {
             bindings = <
 &trans     &trans           &trans         &trans            &trans             &trans         &trans       &trans                &trans                 &trans         &trans             &trans
-&kp GRAVE  &kp TILDE        &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &kp CARET    &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOLLAR     &kp SINGLE_QUOTE   &trans
+&kp GRAVE  &kp TILDE        &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &kp CARET    &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOLLAR     &kp SINGLE_QUOTE   &none
 &trans     &kp EXCLAMATION  &kp ASTERISK   &kp SLASH         &kp EQUAL          &kp AMPERSAND  &kp HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp DOUBLE_QUOTES  &trans
-&layer_en  &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT    &kp AT_SIGN  &kp COLON             &kp COMMA              &kp PERIOD     &kp SLASH          &layer_ru
-&trans     &trans           &trans         &dash_long        &dash_short        &kp UNDERSCORE  &trans       &trans                &trans                 &trans         &open_rquote_en    &close_rquote_en
+&none      &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT    &kp AT_SIGN  &kp COLON             &kp COMMA              &kp PERIOD     &kp BACKSLASH      &none
+&trans     &trans           &trans         &dash_long        &dash_short        &kp UNDERSCORE  &trans       &trans                &trans                 &none          &open_rquote_en    &close_rquote_en
             >;
         };
 
@@ -320,7 +348,7 @@
             bindings = <
 &kp ESC    &none    &none              &none           &none                &none       &none   &none            &none           &none              &none              &kp BACKSPACE
 &kp TAB    &kp Q    &kp W              &kp E           &kp R                &kp T       &kp Y   &kp U            &kp I           &kp O              &kp P              &kp LBKT
-&hrm_l LGUI GRAVE  &lt 3 A  &hrm_l LEFT_ALT S  &hmc_l D  &hrm_l LEFT_SHIFT F  &kp G       &kp H   &hrm_r LSHIFT J  &hmc_r K  &hrm_r LEFT_ALT L  &lt 3 SEMICOLON    &hrm_r RGUI APOS
+&hrm_l LGUI GRAVE  &lt 3 A  &hrm_l LEFT_ALT S  &hmc_l 0 D  &hrm_l LEFT_SHIFT F  &kp G       &kp H   &hrm_r LSHIFT J  &hmc_r 0 K  &hrm_r LEFT_ALT L  &lt 3 SEMICOLON    &hrm_r RGUI APOS
 &layer_en  &kp Z    &kp X              &kp C           &kp V                &kp B       &kp N   &kp M            &kp COMMA       &kp DOT            &kp RIGHT_BRACKET  &layer_ru
 &none      &none    &none              &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &mkp LCLK  &mkp RCLK           &lt 4 ENTER     &none              &none              &none
             >;
@@ -329,10 +357,10 @@
         Sym-ru {
             bindings = <
 &trans        &trans           &trans            &trans               &trans                &trans            &trans          &trans                &trans                 &trans            &trans               &trans
-&in_en GRAVE  &in_en TILDE2    &in_en LESS_THAN  &in_en GREATER_THAN  &kp MINUS             &in_en PIPE       &in_en CARET    &in_en LEFT_BRACE     &in_en RIGHT_BRACE     &in_en DOLLAR     &in_en SINGLE_QUOTE  &trans
-&trans        &kp EXCLAMATION  &kp ASTERISK      &in_en SLASH         &kp EQUAL             &in_en AMPERSAND  &in_en HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &in_en SEMICOLON  &kp LS(NUMBER_2)     &trans
-&layer_en     &kp LS(N7)       &kp PLUS          &in_en LEFT_BRACKET  &in_en RIGHT_BRACKET  &kp PERCENT       &in_en AT_SIGN  &kp LS(NUMBER_6)      &kp COMMA              &kp PERIOD        &in_en SLASH         &layer_ru
-&trans        &trans           &trans            &dash_long           &dash_short           &kp UNDERSCORE  &trans          &trans                &trans                 &trans            &trans               &trans
+&in_en GRAVE  &in_en TILDE     &in_en LESS_THAN  &in_en GREATER_THAN  &kp MINUS             &in_en PIPE       &in_en CARET    &in_en LEFT_BRACE     &in_en RIGHT_BRACE     &in_en DOLLAR     &in_en SINGLE_QUOTE  &none
+&trans        &kp EXCLAMATION  &kp ASTERISK      &in_en SLASH         &kp EQUAL             &in_en AMPERSAND  &in_en HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &in_en SEMICOLON  &in_en DOUBLE_QUOTES  &trans
+&none         &kp LS(N7)       &kp PLUS          &in_en LEFT_BRACKET  &in_en RIGHT_BRACKET  &kp PERCENT       &in_en AT_SIGN  &in_en COLON          &in_en COMMA           &in_en PERIOD     &in_en BACKSLASH     &none
+&trans        &trans           &trans            &dash_long_ru        &dash_short_ru        &kp UNDERSCORE  &trans          &trans                &trans                 &none             &open_rquote_ru      &close_rquote_ru
             >;
         };
 

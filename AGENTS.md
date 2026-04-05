@@ -107,8 +107,10 @@ Defined in `config/cck_ball.keymap`:
 | `layer_en` / `layer_ru` | Macro | Switch base layer to English / Russian |
 | `in_en` | Macro | Type one key in English while Russian layer is active |
 | `to_en` / `to_ru` | Macro | Transition to English / Russian layer |
-| `dash_long` | Macro | Insert em-dash (—) |
+| `dash_long` / `dash_long_ru` | Macro | Insert em-dash (—); `_ru` variant switches OS to EN first |
+| `dash_short` / `dash_short_ru` | Macro | Insert en-dash (–); `_ru` variant switches OS to EN first |
 | `open_rquote_en` / `close_rquote_en` | Macro | Insert Russian typographic quotes («») in English input mode |
+| `open_rquote_ru` / `close_rquote_ru` | Macro | Insert Russian typographic quotes («») in Russian input mode |
 
 ---
 

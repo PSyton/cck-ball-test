@@ -121,10 +121,11 @@
         // If cursor directions are wrong, uncomment one of the zip_xy_transform
         // lines in the scroll/snipe children below as a starting point.
 
-        // Layer 3 (scroll): convert XY motion to scroll-wheel axes.
+        // Layers 1+3 (scroll): convert XY motion to scroll-wheel axes.
+        // Layer 1 = Sym-en, Layer 3 = Sym-ru — scroll active from both base layers.
         // Adjust zip_scroll_scaler divisor to taste (higher = slower scroll).
         scroll {
-            layers = <3>;
+            layers = <1 3>;
             input-processors = <&zip_xy_to_scroll_mapper>,
                                <&zip_scroll_scaler 1 8>;
         };

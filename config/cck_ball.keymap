@@ -51,6 +51,22 @@
         bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
     };
 
+    // Switch applications (Alt+Tab / Alt+Shift+Tab)
+
+    app_switch_encoder: app_switch_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LA(TAB)>, <&kp LA(LS(TAB))>;
+    };
+
+    // Switch windows/tabs (Ctrl+Tab / Ctrl+Shift+Tab)
+
+    win_switch_encoder: win_switch_encoder {
+        compatible = "zmk,behavior-sensor-rotate";
+        #sensor-binding-cells = <0>;
+        bindings = <&kp LC(TAB)>, <&kp LC(LS(TAB))>;
+    };
+
     hrm_l: hrm_l {
         compatible = "zmk,behavior-hold-tap";
         label = "HRM_L";
@@ -161,6 +177,13 @@
             label = "DASH_LONG";
         };
 
+        dash_short: dash_short {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&kp RIGHT_ALT &kp MINUS &kp MINUS &kp PERIOD>;
+            label = "DASH_SHORT";
+        };
+
         open_rquote_en: open_rquote {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
@@ -220,6 +243,17 @@
         };
     };
 
+    combos {
+        compatible = "zmk,combos";
+
+        // K+H (En) / N+M (Ru) — positions 42+43 — activate Numbers layer
+        combo_numbers {
+            timeout-ms = <50>;
+            key-positions = <42 43>;
+            bindings = <&mo 5>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -245,7 +279,7 @@
 &kp GRAVE  &kp TILDE        &kp LESS_THAN  &kp GREATER_THAN  &kp MINUS          &kp PIPE       &kp CARET    &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp DOLLAR     &kp SINGLE_QUOTE   &trans
 &trans     &kp EXCLAMATION  &kp ASTERISK   &kp SLASH         &kp EQUAL          &kp AMPERSAND  &kp HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp SEMICOLON  &kp DOUBLE_QUOTES  &trans
 &layer_en  &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT    &kp AT_SIGN  &kp COLON             &kp COMMA              &kp PERIOD     &kp SLASH          &layer_ru
-&trans     &trans           &trans         &dash_long        &trans             &trans         &trans       &trans                &trans                 &trans         &open_rquote_en    &close_rquote_en
+&trans     &trans           &trans         &dash_long        &dash_short        &trans         &trans       &trans                &trans                 &trans         &open_rquote_en    &close_rquote_en
             >;
         };
 
@@ -265,28 +299,28 @@
 &in_en GRAVE  &in_en TILDE2    &in_en LESS_THAN  &in_en GREATER_THAN  &kp MINUS             &in_en PIPE       &in_en CARET    &in_en LEFT_BRACE     &in_en RIGHT_BRACE     &in_en DOLLAR     &in_en SINGLE_QUOTE  &trans
 &trans        &kp EXCLAMATION  &kp ASTERISK      &in_en SLASH         &kp EQUAL             &in_en AMPERSAND  &in_en HASH     &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &in_en SEMICOLON  &kp LS(NUMBER_2)     &trans
 &layer_en     &kp LS(N7)       &kp PLUS          &in_en LEFT_BRACKET  &in_en RIGHT_BRACKET  &kp PERCENT       &in_en AT_SIGN  &kp LS(NUMBER_6)      &kp LS(NUMBER_4)       &in_en COMMA      &in_en DOT           &layer_ru
-&trans        &trans           &trans            &trans               &trans                &trans            &trans          &trans                &trans                 &trans            &trans               &trans
+&trans        &trans           &trans            &dash_long           &dash_short           &trans            &trans          &trans                &trans                 &trans            &trans               &trans
             >;
         };
 
         F_layers {
             bindings = <
-&trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
-&none   &kp F10  &kp F9  &kp F8  &kp F7  &trans  &none   &kp HOME  &kp UP    &kp END    &trans  &trans
-&trans  &kp F11  &hrm_l LALT F3  &hrm_l LCTRL F2  &hrm_l LEFT_SHIFT F1  &trans  &none   &kp LEFT  &kp DOWN  &kp RIGHT  &trans  &trans
-&trans  &kp F12  &kp F6  &kp F5  &kp F4  &none   &none   &none     &trans    &trans     &none   &trans
-&trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans    &trans    &trans     &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR
+&none   &kp F10       &kp F9        &kp F8        &kp F7        &trans        &kp PSCRN      &kp HOME      &kp UP     &kp END    &trans         &bt BT_CLR_ALL
+&trans  &kp F11  &hrm_l LALT F3  &hrm_l LCTRL F2  &hrm_l LEFT_SHIFT F1  &trans  &kp LC(LEFT)   &kp LEFT      &kp DOWN   &kp RIGHT  &kp LC(RIGHT)  &trans
+&trans  &kp F12  &kp F6  &kp F5  &kp F4  &none   &kp LC(PG_UP)  &kp PG_UP     &kp INS    &kp PG_DN  &kp LC(PG_DN)  &trans
+&trans  &trans   &trans  &trans  &trans  &trans  &trans         &trans        &trans     &trans     &trans         &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+            sensor-bindings = <&app_switch_encoder &win_switch_encoder>;
         };
 
         Numbers {
             bindings = <
-&trans      &none         &none   &none   &none   &none         &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4  &bt BT_CLR_ALL
-&trans      &kp SLASH     &kp N9  &kp N8  &kp N7  &kp ASTERISK  &trans        &trans        &trans        &trans        &trans        &bt BT_CLR
-&trans      &kp PLUS      &kp N3  &kp N2  &kp N1  &kp MINUS     &trans        &trans        &trans        &trans        &trans        &trans
-&trans      &kp X         &kp N6  &kp N5  &kp N4  &kp PERCENT   &bt BT_NXT    &trans        &trans        &trans        &trans        &trans
+&trans      &none         &none   &none   &none   &none         &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &kp SLASH     &kp N9  &kp N8  &kp N7  &kp ASTERISK  &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &kp PLUS      &kp N3  &kp N2  &kp N1  &kp MINUS     &trans  &trans  &trans  &trans  &trans  &trans
+&trans      &kp X         &kp N6  &kp N5  &kp N4  &kp PERCENT   &trans  &trans  &trans  &trans  &trans  &trans
 &kp KP_DOT  &kp KP_COMMA  &kp N0  &trans  &trans  &trans        &trans        &trans        &trans        &trans        &trans        &trans
             >;
 

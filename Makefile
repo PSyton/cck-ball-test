@@ -1,7 +1,7 @@
 # CCK-BALL ZMK Firmware Build Makefile
 
 # Configuration
-BOARD := nice_nano//zmk
+BOARD := nice_nano_v2
 ZMK_CONFIG := /work/config
 BUILD_DIR := build
 OUTPUT_DIR := /work

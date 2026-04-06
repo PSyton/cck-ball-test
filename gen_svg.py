@@ -406,18 +406,21 @@ def parse_binding(token: str, layer_idx: int = -1) -> dict:
         return key_result(ru(code), hold=mod, ktype="hrm")
 
     # --- hmc_sc_l / hmc_sc_r: hold = Ctrl, activates shortcut layer (impl detail hidden) ---
+    # Called as &hmc_sc_l 0 KEY — args[0] is dummy, args[1] is the tap key.
     if behavior in ("hmc_sc_l", "hmc_sc_r"):
-        code = args[0] if args else "?"
+        code = args[1] if len(args) > 1 else "?"
         return key_result(ru(code), hold="Ctrl", ktype="hrm")
 
     # --- hma_sc_l / hma_sc_r: hold = Alt, activates shortcut layer (impl detail hidden) ---
+    # Called as &hma_sc_l 0 KEY — args[0] is dummy, args[1] is the tap key.
     if behavior in ("hma_sc_l", "hma_sc_r"):
-        code = args[0] if args else "?"
+        code = args[1] if len(args) > 1 else "?"
         return key_result(ru(code), hold="Alt", ktype="hrm")
 
     # --- hmg_sc_l / hmg_sc_r: hold = GUI, activates shortcut layer (impl detail hidden) ---
+    # Called as &hmg_sc_l 0 KEY — args[0] is dummy, args[1] is the tap key.
     if behavior in ("hmg_sc_l", "hmg_sc_r"):
-        code = args[0] if args else "?"
+        code = args[1] if len(args) > 1 else "?"
         return key_result(ru(code), hold="GUI", ktype="hrm")
 
     # --- in_en: plain symbol, OS-switch mechanism hidden ---

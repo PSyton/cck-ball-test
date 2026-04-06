@@ -34,38 +34,30 @@
 	        , <&gpio0 22 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
 	        , <&gpio1 13 (GPIO_ACTIVE_HIGH | GPIO_PULL_DOWN)>
             ;
-    };
 
-    /* encoders — must be at root level, NOT inside kscan0 */
-    left_encoder: encoder_left {
-        compatible = "alps,ec11";
-        status = "disabled";
-        label = "LEFT_ENCODER";
-        a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        // Manually counted: 24 ticks per full rotation.
-        // steps MUST match the actual hardware tick count — wrong values cause double-firing
-        // or missed triggers because ZMK divides position by steps to detect full rotations.
-        steps = <24>;
-    };
+        /* encoders */
+        left_encoder: encoder_left {
+            compatible = "alps,ec11";
+            status = "disabled";
+            label = "LEFT_ENCODER";
+            a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+            b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+            steps = <12>;
+        };
 
-    right_encoder: encoder_right {
-        compatible = "alps,ec11";
-        status = "disabled";
-        label = "RIGHT_ENCODER";
-        a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        steps = <24>;
-    };
+        right_encoder: encoder_right {
+            compatible = "alps,ec11";
+            status = "disabled";
+            label = "RIGHT_ENCODER";
+            a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+            b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+            steps = <12>;
+        };
 
-    sensors {
-        compatible = "zmk,keymap-sensors";
-        sensors = <&left_encoder &right_encoder>;
-        // triggers-per-rotation MUST be an integer divisor of steps to avoid integer-math
-        // rounding artifacts (which cause "1 click = nothing, next = double").
-        // 24 / 12 = 2 → exactly 2 ticks per trigger, 12 triggers per full rotation.
-        // Valid clean divisors of 24: 1, 2, 3, 4, 6, 8, 12, 24.
-        // Raise to 24 for maximum sensitivity; lower to 8 or 6 for coarser steps.
-        triggers-per-rotation = <12>;
+        sensors {
+            compatible = "zmk,keymap-sensors";
+            sensors = <&left_encoder &right_encoder>;
+            triggers-per-rotation = <10>;
+        };
     };
 };

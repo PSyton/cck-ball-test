@@ -510,7 +510,7 @@
         // Shortcut-L: activated when left-hand Ctrl is held (via ctrl_sc_l macro).
         // Left half has plain modifier kp (LGUI, LALT, LCTRL, LSHIFT) so other left-hand
         // fingers can build multi-modifier combos. Right half has plain English keys.
-        Shortcut-L {
+        Shortcut_L {
             bindings = <
 &kp ESC      &none         &none         &none         &none         &none        &none      &none      &none      &none      &none      &kp BACKSPACE
 &kp TAB      &kp Q         &kp W         &kp F         &kp P         &kp B        &kp J      &kp L      &kp U      &kp Y      &none      &none
@@ -529,7 +529,7 @@
         // Shortcut-R: activated when right-hand Ctrl is held (via ctrl_sc_r macro).
         // Right half has plain modifier kp (LGUI, LALT, LCTRL, LSHIFT) so other right-hand
         // fingers can build multi-modifier combos. Left half has plain English keys.
-        Shortcut-R {
+        Shortcut_R {
             bindings = <
 &kp ESC      &none         &none         &none         &none         &none        &none      &none      &none      &none      &none      &kp BACKSPACE
 &kp TAB      &kp Q         &kp W         &kp F         &kp P         &kp B        &kp J      &kp L      &kp U      &kp Y      &none      &none

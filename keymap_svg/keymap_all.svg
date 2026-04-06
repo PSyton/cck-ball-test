@@ -51,8 +51,7 @@
   <rect x="1111.0" y="141.3" width="58" height="58" rx="6" ry="6" fill="#fafafa" stroke="#dddddd" stroke-width="1.5"/>
   <text x="1140.0" y="175.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#bbbbbb">✕</text>
   <rect x="23.0" y="205.3" width="58" height="58" rx="6" ry="6" fill="#f0f0f0" stroke="#aaaaaa" stroke-width="1.5"/>
-  <text x="52.0" y="218.3" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">GUI</text>
-  <text x="52.0" y="239.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#222222"></text>
+  <text x="52.0" y="239.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#222222">LGui</text>
   <rect x="87.0" y="205.3" width="58" height="58" rx="6" ry="6" fill="#b8d4ff" stroke="#4477cc" stroke-width="1.5"/>
   <text x="116.0" y="218.3" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#08224a">Sym</text>
   <text x="116.0" y="239.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#08224a">A</text>
@@ -82,8 +81,7 @@
   <text x="1076.0" y="218.3" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#08224a">Sym</text>
   <text x="1076.0" y="239.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#08224a">O</text>
   <rect x="1111.0" y="205.3" width="58" height="58" rx="6" ry="6" fill="#f0f0f0" stroke="#aaaaaa" stroke-width="1.5"/>
-  <text x="1140.0" y="218.3" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">GUI</text>
-  <text x="1140.0" y="239.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#222222"></text>
+  <text x="1140.0" y="239.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#222222">RGui</text>
   <rect x="23.0" y="269.3" width="58" height="58" rx="6" ry="6" fill="#d8d8d8" stroke="#888888" stroke-width="1.5"/>
   <text x="52.0" y="303.3" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111111">▸ En</text>
   <rect x="87.0" y="269.3" width="58" height="58" rx="6" ry="6" fill="#f0f0f0" stroke="#aaaaaa" stroke-width="1.5"/>
@@ -184,8 +182,8 @@
   <text x="1012.0" y="635.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">$</text>
   <rect x="1047.0" y="617.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
   <text x="1076.0" y="651.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">'</text>
-  <rect x="1111.0" y="617.6" width="58" height="58" rx="6" ry="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1.5"/>
-  <text x="1140.0" y="651.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">▽</text>
+  <rect x="1111.0" y="617.6" width="58" height="58" rx="6" ry="6" fill="#fafafa" stroke="#dddddd" stroke-width="1.5"/>
+  <text x="1140.0" y="651.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#bbbbbb">✕</text>
   <rect x="23.0" y="681.6" width="58" height="58" rx="6" ry="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1.5"/>
   <text x="52.0" y="715.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">▽</text>
   <rect x="87.0" y="681.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
@@ -210,8 +208,8 @@
   <text x="1076.0" y="715.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">"</text>
   <rect x="1111.0" y="681.6" width="58" height="58" rx="6" ry="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1.5"/>
   <text x="1140.0" y="715.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">▽</text>
-  <rect x="23.0" y="745.6" width="58" height="58" rx="6" ry="6" fill="#d8d8d8" stroke="#888888" stroke-width="1.5"/>
-  <text x="52.0" y="779.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111111">▸ En</text>
+  <rect x="23.0" y="745.6" width="58" height="58" rx="6" ry="6" fill="#fafafa" stroke="#dddddd" stroke-width="1.5"/>
+  <text x="52.0" y="779.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#bbbbbb">✕</text>
   <rect x="87.0" y="745.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
   <text x="116.0" y="779.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">?</text>
   <rect x="151.0" y="729.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
@@ -233,9 +231,9 @@
   <rect x="983.0" y="729.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
   <text x="1012.0" y="763.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">.</text>
   <rect x="1047.0" y="745.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
-  <text x="1076.0" y="779.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">/</text>
-  <rect x="1111.0" y="745.6" width="58" height="58" rx="6" ry="6" fill="#b8e8c4" stroke="#389955" stroke-width="1.5"/>
-  <text x="1140.0" y="779.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#083018">▸ Ru</text>
+  <text x="1076.0" y="779.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">\</text>
+  <rect x="1111.0" y="745.6" width="58" height="58" rx="6" ry="6" fill="#fafafa" stroke="#dddddd" stroke-width="1.5"/>
+  <text x="1140.0" y="779.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#bbbbbb">✕</text>
   <rect x="23.0" y="809.6" width="58" height="58" rx="6" ry="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1.5"/>
   <text x="52.0" y="843.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">▽</text>
   <rect x="87.0" y="809.6" width="58" height="58" rx="6" ry="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1.5"/>
@@ -254,8 +252,8 @@
   <text x="756.0" y="859.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">▽</text>
   <rect x="791.0" y="809.6" width="58" height="58" rx="6" ry="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1.5"/>
   <text x="820.0" y="843.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">▽</text>
-  <rect x="983.0" y="793.6" width="58" height="58" rx="6" ry="6" fill="#f5f5f5" stroke="#cccccc" stroke-width="1.5"/>
-  <text x="1012.0" y="827.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#aaaaaa">▽</text>
+  <rect x="983.0" y="793.6" width="58" height="58" rx="6" ry="6" fill="#fafafa" stroke="#dddddd" stroke-width="1.5"/>
+  <text x="1012.0" y="827.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#bbbbbb">✕</text>
   <rect x="1047.0" y="809.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
   <text x="1076.0" y="843.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a3a6c">«</text>
   <rect x="1111.0" y="809.6" width="58" height="58" rx="6" ry="6" fill="#e8f2ff" stroke="#99bbee" stroke-width="1.5"/>
@@ -312,16 +310,16 @@
   <text x="1140.0" y="1128.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">Х</text>
   <rect x="23.0" y="1158.0" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>
   <text x="52.0" y="1171.0" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">GUI</text>
-  <text x="52.0" y="1192.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">Ё</text>
+  <text x="52.0" y="1192.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">0</text>
   <rect x="87.0" y="1158.0" width="58" height="58" rx="6" ry="6" fill="#b8d4ff" stroke="#4477cc" stroke-width="1.5"/>
   <text x="116.0" y="1171.0" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#08224a">Sym</text>
   <text x="116.0" y="1192.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#08224a">Ф</text>
   <rect x="151.0" y="1142.0" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>
   <text x="180.0" y="1155.0" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">Alt</text>
-  <text x="180.0" y="1176.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">Ы</text>
+  <text x="180.0" y="1176.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">0</text>
   <rect x="215.0" y="1133.6" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>
   <text x="244.0" y="1146.6" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">Ctrl</text>
-  <text x="244.0" y="1167.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">В</text>
+  <text x="244.0" y="1167.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">0</text>
   <rect x="279.0" y="1142.0" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>
   <text x="308.0" y="1155.0" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">Shift</text>
   <text x="308.0" y="1176.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">А</text>
@@ -334,16 +332,16 @@
   <text x="884.0" y="1176.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">О</text>
   <rect x="919.0" y="1133.6" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>
   <text x="948.0" y="1146.6" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">Ctrl</text>
-  <text x="948.0" y="1167.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">Л</text>
+  <text x="948.0" y="1167.6" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">0</text>
   <rect x="983.0" y="1142.0" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>
   <text x="1012.0" y="1155.0" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">Alt</text>
-  <text x="1012.0" y="1176.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">Д</text>
+  <text x="1012.0" y="1176.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">0</text>
   <rect x="1047.0" y="1158.0" width="58" height="58" rx="6" ry="6" fill="#b8d4ff" stroke="#4477cc" stroke-width="1.5"/>
   <text x="1076.0" y="1171.0" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#08224a">Sym</text>
   <text x="1076.0" y="1192.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#08224a">Ж</text>
   <rect x="1111.0" y="1158.0" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>
   <text x="1140.0" y="1171.0" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="#7a55cc">GUI</text>
-  <text x="1140.0" y="1192.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">Э</text>
+  <text x="1140.0" y="1192.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a4a28">0</text>
   <rect x="23.0" y="1222.0" width="58" height="58" rx="6" ry="6" fill="#d8d8d8" stroke="#888888" stroke-width="1.5"/>
   <text x="52.0" y="1256.0" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#111111">▸ En</text>
   <rect x="87.0" y="1222.0" width="58" height="58" rx="6" ry="6" fill="#e4f7e8" stroke="#88cc99" stroke-width="1.5"/>

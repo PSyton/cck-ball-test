@@ -14,8 +14,11 @@ Notes:
     - Sym-en (layer 1) and Sym-ru (layer 3) are merged into a single visual
       "Sym" layer. in_en macros are treated as plain symbols — the OS-level
       input switching is an implementation detail invisible to the user.
-    - hmc_l / hmc_r are rendered like hrm (hold = Ctrl), hiding the
-      "also activates En layer" implementation detail.
+    - Shortcut-L (layer 6) and Shortcut-R (layer 7) are excluded from the
+      diagram — they are an implementation detail of Ru layer HRM shortcuts.
+    - hmc_sc_l/r are rendered like hrm with hold=Ctrl, hiding the
+      "also activates shortcut layer" implementation detail. Same for
+      hma_sc_l/r (hold=Alt) and hmg_sc_l/r (hold=GUI).
     - The Ru layer (2) displays Cyrillic letters instead of QWERTY key codes.
 """
 
@@ -188,6 +191,18 @@ def strip_comments(text: str) -> str:
     return text
 
 
+def expand_defines(text: str) -> str:
+    """Expand simple #define NAME VALUE substitutions (integer values only)."""
+    defines = {}
+    for m in re.finditer(r'^\s*#define\s+(\w+)\s+(\d+)', text, re.MULTILINE):
+        defines[m.group(1)] = m.group(2)
+    # Replace all occurrences of each defined name with its value.
+    # Sort by length descending to avoid partial replacements.
+    for name in sorted(defines, key=len, reverse=True):
+        text = re.sub(r'\b' + re.escape(name) + r'\b', defines[name], text)
+    return text
+
+
 def parse_combos(path: str) -> list:
     """
     Parse the combos { ... } block and return a list of:
@@ -197,6 +212,7 @@ def parse_combos(path: str) -> list:
     """
     text = Path(path).read_text(encoding="utf-8")
     text = strip_comments(text)
+    text = expand_defines(text)
 
     combos_match = re.search(r'combos\s*\{[^}]*compatible\s*=\s*"zmk,combos"\s*;(.*?)\}\s*;', text, re.DOTALL)
     if not combos_match:
@@ -236,6 +252,7 @@ def parse_keymap(path: str) -> dict:
     """
     text = Path(path).read_text(encoding="utf-8")
     text = strip_comments(text)
+    text = expand_defines(text)
 
     # Find keymap { ... }
     km_match = re.search(r'keymap\s*\{[^}]*compatible\s*=\s*"zmk,keymap"\s*;(.*)\}\s*;', text, re.DOTALL)
@@ -388,18 +405,20 @@ def parse_binding(token: str, layer_idx: int = -1) -> dict:
         code = args[1] if len(args) > 1 else "?"
         return key_result(ru(code), hold=mod, ktype="hrm")
 
-    # --- hmc_l / hmc_r: rendered as hrm with hold=Ctrl ---
-    if behavior in ("hmc_l", "hmc_r"):
+    # --- hmc_sc_l / hmc_sc_r: hold = Ctrl, activates shortcut layer (impl detail hidden) ---
+    if behavior in ("hmc_sc_l", "hmc_sc_r"):
         code = args[0] if args else "?"
         return key_result(ru(code), hold="Ctrl", ktype="hrm")
 
-    # --- hmg_l / hmg_r: hold=GUI, tap=nothing ---
-    if behavior == "hmg_l":
-        mod = MOD_LABELS.get(args[0], args[0]) if args else "GUI"
-        return key_result("", hold=mod, ktype="hrm")
-    if behavior == "hmg_r":
-        mod = MOD_LABELS.get(args[0], args[0]) if args else "GUI"
-        return key_result("", hold=mod, ktype="hrm")
+    # --- hma_sc_l / hma_sc_r: hold = Alt, activates shortcut layer (impl detail hidden) ---
+    if behavior in ("hma_sc_l", "hma_sc_r"):
+        code = args[0] if args else "?"
+        return key_result(ru(code), hold="Alt", ktype="hrm")
+
+    # --- hmg_sc_l / hmg_sc_r: hold = GUI, activates shortcut layer (impl detail hidden) ---
+    if behavior in ("hmg_sc_l", "hmg_sc_r"):
+        code = args[0] if args else "?"
+        return key_result(ru(code), hold="GUI", ktype="hrm")
 
     # --- in_en: plain symbol, OS-switch mechanism hidden ---
     if behavior == "in_en":
@@ -450,15 +469,17 @@ def merge_sym_layers(layers: dict) -> dict:
     Replace layer 1 (Sym-en) with a merged "Sym" layer that uses Sym-en as
     the canonical source (since both layers produce identical visible symbols).
     Drop layer 3 (Sym-ru) from the output entirely.
+    Drop layers 6 (Shortcut-L) and 7 (Shortcut-R) — implementation detail of
+    the Ru layer HRM mechanism, not user-visible layers.
 
     Also renumber output layers to fill the gap: 0, 1, 2, 3, 4
     (original indices 0=En, 1=Sym-en→Sym, 2=Ru, 4=F_layers, 5=Numbers)
     """
+    SKIP = {3, 6, 7}  # Sym-ru, Shortcut-L, Shortcut-R
     merged = {}
     display_idx = 0
     for orig_idx in sorted(layers.keys()):
-        if orig_idx == 3:
-            # Sym-ru: skip, already merged into layer 1
+        if orig_idx in SKIP:
             continue
         layer = dict(layers[orig_idx])
         if orig_idx == 1:

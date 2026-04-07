@@ -43,9 +43,6 @@
         label = "LEFT_ENCODER";
         a-gpios = <&gpio0 29 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
         b-gpios = <&gpio0 2 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-        // Manually counted: 24 ticks per full rotation.
-        // steps MUST match the actual hardware tick count — wrong values cause double-firing
-        // or missed triggers because ZMK divides position by steps to detect full rotations.
         steps = <24>;
     };
 

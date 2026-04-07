@@ -45,22 +45,6 @@
 };
 
 / {
-    // Vertical scroll encoder behavior
-
-    scroll_vertical_encoder: scroll_vertical_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
-    };
-
-    // Horizontal scroll encoder behavior
-
-    scroll_horizontal_encoder: scroll_horizontal_encoder {
-        compatible = "zmk,behavior-sensor-rotate";
-        #sensor-binding-cells = <0>;
-        bindings = <&msc SCRL_LEFT>, <&msc SCRL_RIGHT>;
-    };
-
     // Switch applications (Alt+Tab / Alt+Shift+Tab)
 
     app_switch_encoder: app_switch_encoder {
@@ -447,8 +431,8 @@
             >;
 
             sensor-bindings =
-                <&scroll_vertical_encoder>,
-                <&scroll_horizontal_encoder>;
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp PG_UP PG_DN>;
 
             label = "Calemak-dh";
         };
@@ -461,6 +445,10 @@
 &none      &kp QUESTION     &kp PLUS       &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp PERCENT    &kp AT_SIGN  &kp COLON             &kp COMMA              &kp PERIOD     &kp BACKSLASH      &none
 &trans     &trans           &trans         &dash_long        &dash_short        &kp UNDERSCORE  &trans       &trans                &trans                 &none          &open_rquote_en    &close_rquote_en
             >;
+
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp PG_UP PG_DN>;
         };
 
         Ru {
@@ -471,6 +459,10 @@
 &layer_en  &kp Z    &kp X              &kp C           &kp V                &kp B       &kp N   &kp M            &kp COMMA       &kp DOT            &kp RIGHT_BRACKET  &layer_ru
 &none      &none    &none              &lt 4 SPACE     &kp BACKSPACE        &kp DELETE  &mkp LCLK  &mkp RCLK           &lt 4 ENTER     &none              &none              &none
             >;
+
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp PG_UP PG_DN>;
         };
 
         Sym-ru {
@@ -481,6 +473,10 @@
 &none         &kp LS(N7)       &kp PLUS          &in_en LEFT_BRACKET  &in_en RIGHT_BRACKET  &kp PERCENT       &in_en AT_SIGN  &in_en COLON          &in_en COMMA           &in_en PERIOD     &in_en BACKSLASH     &none
 &trans        &trans           &trans            &dash_long_ru        &dash_short_ru        &kp UNDERSCORE  &trans          &trans                &trans                 &none             &open_rquote_ru      &close_rquote_ru
             >;
+
+            sensor-bindings =
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp PG_UP PG_DN>;
         };
 
         F_layers {
@@ -520,8 +516,8 @@
             >;
 
             sensor-bindings =
-                <&scroll_vertical_encoder>,
-                <&scroll_horizontal_encoder>;
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp PG_UP PG_DN>;
 
             label = "Shortcut-L";
         };
@@ -539,8 +535,8 @@
             >;
 
             sensor-bindings =
-                <&scroll_vertical_encoder>,
-                <&scroll_horizontal_encoder>;
+                <&inc_dec_kp C_VOL_UP C_VOL_DN>,
+                <&inc_dec_kp PG_UP PG_DN>;
 
             label = "Shortcut-R";
         };
